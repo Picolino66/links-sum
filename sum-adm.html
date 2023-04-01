@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LINKS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <style>
+    .container {
+      max-width: 720px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="text-center pt-5">
+    <h1>LINKS</h1>
+  </div>
+  <form class="container">
+    <div class="row">
+      <div class="form-group col">
+        <label for="Login">Login:</label>
+        <input type="text" class="form-control form-control-sm" id="login" name="login">
+      </div>
+      <div class="form-group col">
+        <label for="senha">Senha:</label>
+        <input type="password" class="form-control form-control-sm" id="senha" name="senha">
+      </div>
+    </div>
+  </form>
+  <form class="container">
+    <div class="row">
+      <div class="form-group col">
+        <label for="titulo">Titulo:</label>
+        <input type="text" class="form-control" id="titulo" name="titulo">
+      </div>
+      <div class="form-group col">
+        <label for="link">Link:</label>
+        <input type="text" class="form-control" id="link" name="link">
+      </div>
+      <div class="form-group col">
+        <label for="link">Prioridade:</label>
+        <input type="number" class="form-control" id="prioridade" name="prioridade">
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary btn-lg px-5" onclick="login(event)">Salvar</button>
+    </div>
+  </form>
+  <div class="text-center alert" role="alert">
+    <p id="mensagemLogin"></p>
+  </div>
+  <div class="container text-center" id="listaLinks">
+  </div>
+  <script src="funcoes.js"></script>
+</body>
+</html>

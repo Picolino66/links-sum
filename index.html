@@ -1,64 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Ufla Memes</title>
-    <!-- Favicon -->
-    <link rel="icon" href="Logo_sum1.png" type="image/x-icon" />
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- Core theme CSS -->
-    <link rel="stylesheet" href="style.css">
-  </head>
 
-  <body>
-    <!-- Parallax Pixel Background Animation -->
-    <section class="animated-background">
-      <div id="stars1"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-    </section>
-    <!-- End of Parallax Pixel Background Animation -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Ufla Memes</title>
+  <!-- Favicon -->
+  <link rel="icon" href="Logo_sum1.png" type="image/x-icon" />
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <!-- Core theme CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <a id="profilePicture" href="#popup">
-      <img src="Logo_sum1.png" alt="Profile Picture">
-    </a>
+<body>
+  <!-- Parallax Pixel Background Animation -->
+  <section class="animated-background">
+    <div id="stars1"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </section>
+  <!-- End of Parallax Pixel Background Animation -->
 
-    <div class="overlay" id="popup">
-      <div class="popup">
-        <div class="popup-photo">
-          <a href="Logo_sum1.png" target="_blank">
-            <img src="Logo_sum1.png" alt="Profile Picture">
-          </a>
-        </div>
-        <div class="popup-quote">
-          But... the sensation that I've lost something lingers for a longtime after I wake up.
-        </div>
-        <a class="popup-close" onclick="history.back()">&times;</a>
+  <a id="profilePicture" href="#popup">
+    <img src="Logo_sum1.png" alt="Profile Picture">
+  </a>
+
+  <div class="overlay" id="popup">
+    <div class="popup">
+      <div class="popup-photo">
+        <a href="Logo_sum1.png" target="_blank">
+          <img src="Logo_sum1.png" alt="Profile Picture">
+        </a>
       </div>
+      <div class="popup-quote">
+        But... the sensation that I've lost something lingers for a longtime after I wake up.
+      </div>
+      <a class="popup-close" onclick="history.back()">&times;</a>
     </div>
+  </div>
 
-    <div id="userName">
-      Super Ufla Memes
-    </div>
-    <div id="links">
-      <a class="link" href="http://byma.party/domingaonograu-18" target="_blank">
-        Domingão no Grau
-      </a>
-    </div>
-    <div id="links">
-      <a class="link" href="https://passemix.com.br/100-dias-surreal-folia?chave=2a8f9dcf" target="_blank">
-        GO Mobilidade Urbana Applestore
-      </a>
-    </div>
-    <div id="links">
-      <a class="link" href="https://apps.apple.com/us/app/go-mobilidade-urbana/id1547674401" target="_blank">
-        GO Mobilidade Urbana Playstore
-      </a>
-    </div>
-    <div id="hashtag">
-      #SUM❤
-    </div>
-  </body>
+  <div id="userName">
+    Super Ufla Memes
+  </div>
+  <div id="listaLinks">
+
+  </div>
+  <div id="hashtag">
+    #SUM❤
+  </div>
+</body>
+<script>
+  window.onload = function () {
+    getAllIndex();
+  };
+  function chamadaApi(caminho, metodo, objeto) {
+    const url = "http://localhost:4000/";
+    requisicao = {
+      method: metodo,
+      headers: {"Content-Type": "application/json"},
+    };
+    return fetch(url + caminho, requisicao).then((response) => response.json());
+  }
+  function getAllIndex() {
+    const objetoLogin = {};
+    chamadaApi("links", "GET", objetoLogin)
+      .then((data) => {
+        if (data) {
+          data.sort((a, b) => a.prioridade - b.prioridade);
+          insereListaIndex(data);
+        }
+      });
+  }
+  function insereListaIndex(data) {
+    // Seleciona a div que irá receber os elementos HTML
+    const listaLinks = document.getElementById("listaLinks");
+    // Percorre a lista de links e cria elementos HTML para cada um
+    for (let i = 0; i < data.length; i++) {
+      // Cria o elemento HTML para exibir as informações do link
+      const linkElement = document.createElement("div");
+      linkElement.classList.add("links-div");
+      // Define o conteúdo do elemento com os valores do objeto "data"
+      linkElement.innerHTML = `<a class="link" href="${data[i].link}"target="_blank">${data[i].titulo}</a>`;
+      // Adiciona o elemento HTML à div "listaLinks"
+      listaLinks.appendChild(linkElement);
+    }
+
+  }
+</script>
+
 </html>

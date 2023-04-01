@@ -7,7 +7,6 @@
     --font: 'Karla', sans-serif;
     --delay: .3s;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -46,7 +45,7 @@ body {
     text-decoration: none;
 }
 
-#links {
+.links-div {
     max-width: 675px;
     width: auto;
     display: block;
